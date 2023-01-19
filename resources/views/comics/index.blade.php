@@ -3,6 +3,7 @@
     <div class="container">
         <h1>Questa è l'index</h1>
         <h1>Lista Comics</h1>
+        <a href="{{ route('comics.create') }}" class="btn btn-warning">Create a new Comic</a>
         <table class="table">
             <thead>
                 <tr>
