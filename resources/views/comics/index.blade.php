@@ -29,17 +29,23 @@
                         <td>{{ $comic->type }}</td>
                         <td><a href="{{ route('comics.show', $comic) }}"class="btn btn-primary">View</a>
                             <a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                            <form class="delete" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                {{-- <input type="hidden" name="_method" value="DELETE"> --}}
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                {{-- <input type="submit" class="btn btn-danger" value="Delete"> --}}
+                                <button class="btn btn-danger" onclick="deleteConfirm(event)">Delete</button>
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
 
             </tbody>
         </table>
+        {{-- <script>
+            $(".delete").on("submit", function() {
+                return confirm("Are you sure?");
+            })
+        </script> --}}
     </div>
 @endsection
