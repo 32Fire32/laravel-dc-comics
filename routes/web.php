@@ -14,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('comics/delete/{id}', [ComicController::class, 'delete'])->name('delete');
+
+
 Route::resource('comics', ComicController::class);
+
+

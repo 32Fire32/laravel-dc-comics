@@ -120,4 +120,10 @@ class ComicController extends Controller
         $comic->delete();
         return redirect()->route('comics.index');
     }
+
+    public function delete($id)
+    {
+        $comic = Comic::find($id);
+        return view('delete', compact('comic'));
+    }
 }
