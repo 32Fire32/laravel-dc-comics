@@ -29,13 +29,17 @@
                         <td>{{ $comic->type }}</td>
                         <td><a href="{{ route('comics.show', $comic) }}"class="btn btn-primary">View</a>
                             <a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ route('delete', $comic->id) }}"class="btn btn-danger">Delete</a>
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
 
             </tbody>
         </table>
-
     </div>
 @endsection

@@ -8,7 +8,7 @@
                 <h5>Are you sure you want to delete {{ $comic->title }} ?</h5>
             </div>
             <div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="{{ route('comics.index') }}" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
                 <button type="submit" class="btn btn-danger">Yes, Delete Comic</button>
             </div>
         </form>
