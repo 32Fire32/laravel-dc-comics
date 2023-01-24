@@ -33,23 +33,24 @@
                             {{-- <button class="btn btn-danger" onclick="deleteConfirm(event)">Delete</button> --}}
                             <!-- Button trigger modal -->
                             <a href="#" class="btn btn-danger delete" data-bs-toggle="modal"
-                                data-bs-target="#ModalDelete{{ $comic->id }}">{{ __('Delete') }}</a>
+                                data-bs-target="#ModalDelete{{ $comic->id, $comic->title }}">{{ __('Delete') }}</a>
 
                             <!-- Delete Warning Modal -->
 
-                            <div class="modal fade" id="ModalDelete{{ $comic->id }}" tabindex="-1" role="dialog"
-                                aria-hidden="true">
+                            <div class="modal fade" id="ModalDelete{{ $comic->id, $comic->title }}" tabindex="-1"
+                                role="dialog" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Delete Comic</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             {{-- <input type=hidden id="id" name=id> --}}
-                                            <h5 class="text-center">Are you sure to delete {{ $comic->id }}?
+                                            <h5 class="text-center">Are you sure to delete {{ $comic->title }}?
                                             </h5>
                                             <form action="{{ route('comics.destroy', $comic->id) }}" method="POST"
                                                 enctype="multipart/form-data">
@@ -57,7 +58,7 @@
                                                 {{ csrf_field() }}
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">{{ __('Cancel') }}</button>
+                                                        data-bs-dismiss="modal">{{ __('Cancel') }}</button>
                                                     <button type="submit"
                                                         class="btn btn-sm btn-danger">{{ __('Yes Delete') }}</button>
                                                 </div>
