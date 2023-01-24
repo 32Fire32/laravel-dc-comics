@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use App\Helpers;
 
-class ComicController extends Controller
+class ComicController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -35,17 +36,12 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
-        $request->validate([
-            'title'=>'required|string|min:1|max:50',
-            'description' => 'nullable|string',
-            'thumb' => 'nullable',
-            'price' => 'required|numeric|max:1000',
-            'series' => 'required|string|max:100',
-            'sale_date' => 'required|date',
-            'type' => 'required|string|max:50'
-        ]);
+        
+
+       BaseController::validation($request);
+        
         $data = $request->all();
 
         $new_comics = new Comic();
@@ -95,15 +91,17 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $request->validate([
-            'title'=>'required|string|min:1|max:50',
-            'description' => 'nullable|string',
-            'thumb' => 'nullable',
-            'price' => 'required|numeric|max:1000',
-            'series' => 'required|string|max:100',
-            'sale_date' => 'required|date',
-            'type' => 'required|string|max:50'
-        ]);
+        // $request->validate([
+        //     'title'=>'required|string|min:1|max:50',
+        //     'description' => 'nullable|string',
+        //     'thumb' => 'nullable',
+        //     'price' => 'required|numeric|max:1000',
+        //     'series' => 'required|string|max:100',
+        //     'sale_date' => 'required|date',
+        //     'type' => 'required|string|max:50'
+        // ]);
+        BaseController::validation($request);
+       
         $data = $request->all();
         $comic->update($data);
         return redirect()->route('comics.index');
