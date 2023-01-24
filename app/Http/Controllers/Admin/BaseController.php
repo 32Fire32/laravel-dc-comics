@@ -11,10 +11,10 @@ class BaseController extends Controller
         $request->validate([
          'title'=>'required|string|min:1|max:50',
          'description' => 'nullable|string',
-         'thumb' => 'nullable',
-         'price' => 'required|numeric|max:1000',
+         'thumb' => 'nullable|url|max:255',
+         'price' => 'required|decimal:2|max:1000',
          'series' => 'required|string|max:100',
-         'sale_date' => 'required|date',
+         'sale_date' => 'required|date|before:tomorrow',
          'type' => 'required|string|max:50'
      ]); 
      }
