@@ -18,5 +18,3 @@ Route::get('comics/delete/{id}', [ComicController::class, 'delete'])->name('dele
 
 
 Route::resource('comics', ComicController::class);
-
-

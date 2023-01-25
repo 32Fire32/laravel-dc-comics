@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
@@ -35,22 +36,19 @@ class ComicController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request)
-    {
-        
-
-       BaseController::validation($request);
-        
+    public static function store(StoreComicRequest $request)
+    {        
         $data = $request->all();
 
         $new_comics = new Comic();
-        $new_comics->title = $data['title'];
-        $new_comics->description = $data['description'];
-        $new_comics->thumb = $data['thumb'];
-        $new_comics->price = $data['price'];
-        $new_comics->series = $data['series'];
-        $new_comics->sale_date = $data['sale_date'];
-        $new_comics->type = $data['type'];
+        // $new_comics->title = $data['title'];
+        // $new_comics->description = $data['description'];
+        // $new_comics->thumb = $data['thumb'];
+        // $new_comics->price = $data['price'];
+        // $new_comics->series = $data['series'];
+        // $new_comics->sale_date = $data['sale_date'];
+        // $new_comics->type = $data['type'];
+        $new_comics->fill($data);
         $new_comics->save();
 
         return redirect()->route('comics.show', $new_comics->id);
@@ -88,7 +86,7 @@ class ComicController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(StoreComicRequest $request, Comic $comic)
     {
         // $request->validate([
         //     'title'=>'required|string|min:1|max:50',
@@ -99,7 +97,6 @@ class ComicController extends BaseController
         //     'sale_date' => 'required|date',
         //     'type' => 'required|string|max:50'
         // ]);
-        BaseController::validation($request);
        
         $data = $request->all();
         $comic->update($data);
